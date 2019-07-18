@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 异常控制处理器
- * @author dolyw.com
+ * @author pengjb
  * @date 2018/8/30 14:02
  */
 @RestControllerAdvice

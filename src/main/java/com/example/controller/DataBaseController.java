@@ -1,6 +1,6 @@
 /*
  * PDMS wliduo https://github.com/dolyw
- * Created By dolyw.com
+ * Created By pengjb
  * Date By (2019-04-05 18:00:26)
  */
 package com.example.controller;
@@ -17,6 +17,9 @@ import com.generator.CustomGeneratorFacade;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,7 @@ import java.util.*;
 @RestController
 @RequestMapping("database")
 public class DataBaseController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 代码生成的文件输出路径
@@ -67,7 +71,7 @@ public class DataBaseController {
 
     /**
      * 列表
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-05 18:00:26
      */
     @GetMapping
@@ -82,6 +86,9 @@ public class DataBaseController {
         map.put("tableName", tableName);
         PageHelper.startPage(page, rows);
         List<Map<String, Object>> list = generatorDao.queryList(map);
+        for (Map<String, Object> stringObjectMap : list) {
+            logger.error(stringObjectMap.toString());
+        }
         if (list == null) {
             throw new CustomException("查询失败(Query Failure)");
         }
@@ -94,7 +101,7 @@ public class DataBaseController {
 
     /**
      * 获取所有表名
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-08 16:00:26
      */
     @GetMapping("/tableNames/all")
@@ -114,7 +121,7 @@ public class DataBaseController {
 
     /**
      * 表详细字段信息
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-05 18:00:26
      */
     @GetMapping("/{tableName}")
@@ -128,7 +135,7 @@ public class DataBaseController {
 
     /**
      * 生成代码到输出路径
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-05 18:00:26
      */
     @PostMapping("/{tableName}")
@@ -163,7 +170,7 @@ public class DataBaseController {
 
     /**
      * 生成代码为Zip文件下载
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-05 18:00:26
      */
     @GetMapping("/zip/{tableName}")
@@ -203,7 +210,7 @@ public class DataBaseController {
 
     /**
      * 打开Windows系统的代码输出文件夹
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-05 18:00:26
      */
     @GetMapping("/open")
@@ -225,12 +232,13 @@ public class DataBaseController {
 
     /**
      * 读取更新配置文件generator.properties
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019-04-05 18:00:26
      */
     @PutMapping("/config")
     public ResponseBean config(@RequestBody Map<String, String> config) {
         try {
+//            获取 generator.properties 编译后的绝对地址，file:/D:/workspace-sts/pjb/JAVA/ViewGenerator/target/classes/config/generator.properties
             final Enumeration urls = DataBaseController.class.getClassLoader().getResources("config/generator.properties");
             while (urls.hasMoreElements()) {
                 final URL url = (URL) urls.nextElement();
@@ -245,7 +253,8 @@ public class DataBaseController {
                         // 读
                         safeProperties.load(input);
                         config = (Map) safeProperties;
-                    } else {
+                    }
+                    else {
                         // 写
                         safeProperties.load(input);
                         // 遍历map写入
@@ -288,7 +297,7 @@ public class DataBaseController {
 	 * @param outRoot 代码输出文件夹
      * @throws IOException
      * @return boolean
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019/4/8 17:19
      */
     public boolean genCode(String[] tableNames, String outRoot) throws IOException {
@@ -298,6 +307,8 @@ public class DataBaseController {
         // 模板位置
         Generator generator = generatorFacade.getGenerator();
         generator.addTemplateRootDir(Constant.PROJECT_PATH + template);
+        logger.error(outRoot);
+        logger.error(Constant.PROJECT_PATH);
         // 开始执行
         try {
             for (String tableName : tableNames) {

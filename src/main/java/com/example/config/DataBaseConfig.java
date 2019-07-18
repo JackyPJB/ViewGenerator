@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Primary;
 
 /**
  * Dao配置注入
- * @author dolyw.com
+ * @author pengjb
  * @date 2019/4/5 17:56
  */
 @Configuration
@@ -36,7 +36,7 @@ public class DataBaseConfig {
      * @param
      * @throws
      * @return com.example.dao.GeneratorDao
-     * @author dolyw.com
+     * @author pengjb
      * @date 2019/4/5 17:59
      */
     @Bean

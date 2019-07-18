@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 
 /**
  * Application
- * @author dolyw.com
+ * @author pengjb
  * @date 2018/11/16 19:29
  */
 @SpringBootApplication

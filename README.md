@@ -43,23 +43,23 @@ SpringBoot + Mybatis + PageHelper + 通用Mapper + Thymeleaf(Amaze UI(布局) + 
 ```
 启动首页界面
 ```
-![image text](https://docs.dolyw.com/Project/ViewGenerator/image/20190406001.png)
+![image text](https://docs.pengjb/Project/ViewGenerator/image/20190406001.png)
 ```
 生成代码界面如下
 ```
-![image text](https://docs.dolyw.com/Project/ViewGenerator/image/20190406002.png)
+![image text](https://docs.pengjb/Project/ViewGenerator/image/20190406002.png)
 ```
 查看表详细信息界面如下
 ```
-![image text](https://docs.dolyw.com/Project/ViewGenerator/image/20190406003.png)
+![image text](https://docs.pengjb/Project/ViewGenerator/image/20190406003.png)
 ```
 输入表名生成代码界面如下
 ```
-![image text](https://docs.dolyw.com/Project/ViewGenerator/image/20190406004.png)
+![image text](https://docs.pengjb/Project/ViewGenerator/image/20190406004.png)
 ```
 配置更新界面如下
 ```
-![image text](https://docs.dolyw.com/Project/ViewGenerator/image/20190406005.png)
+![image text](https://docs.pengjb/Project/ViewGenerator/image/20190406005.png)
 
 #### 搭建参考
 
